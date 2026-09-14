@@ -1,0 +1,176 @@
+/* =========================================================
+   TASK MANAGER — SOFT LAVENDER THEME
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+
+/* =========================
+   LIGHT THEME
+   ========================= */
+
+:root {
+
+  /* Fonts */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", "Segoe UI", sans-serif;
+
+  /* Background */
+  --color-bg: #f7f3fb;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f0e9f7;
+
+  /* Text */
+  --color-ink: #17131c;
+  --color-ink-muted: #6f6678;
+  --color-ink-faint: #a59baa;
+  --color-on-accent: #ffffff;
+
+  /* Lavender Borders */
+  --color-border: #ddd0e9;
+  --color-border-strong: #c8b5d9;
+
+  /* Lavender Accent */
+  --color-accent: #9270c7;
+  --color-accent-hover: #7b59b0;
+  --color-accent-soft: #eee5f7;
+
+  /* Soft Pink */
+  --color-pink: #e6a6bd;
+  --color-pink-soft: #f9e9f0;
+
+  /* Danger */
+  --color-danger: #c95772;
+  --color-danger-hover: #a9435d;
+  --color-danger-soft: #fbe8ed;
+
+  /* Priority */
+  --priority-high: #c95772;
+  --priority-high-soft: #fbe8ed;
+
+  --priority-medium: #a87827;
+  --priority-medium-soft: #faf0d8;
+
+  --priority-low: #8061b3;
+  --priority-low-soft: #eee5f7;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(75, 48, 98, 0.07);
+  --shadow-md: 0 10px 28px rgba(75, 48, 98, 0.11);
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px rgba(146, 112, 199, 0.25);
+
+  color-scheme: light;
+}
+
+
+/* =========================
+   DARK THEME
+   ========================= */
+
+[data-theme="dark"] {
+
+  /* Background */
+  --color-bg: #100d14;
+  --color-surface: #1b1621;
+  --color-surface-sunken: #151119;
+
+  /* Text */
+  --color-ink: #f8f5fa;
+  --color-ink-muted: #b9afbf;
+  --color-ink-faint: #807487;
+  --color-on-accent: #ffffff;
+
+  /* Borders */
+  --color-border: #392d43;
+  --color-border-strong: #4d3c59;
+
+  /* Lavender */
+  --color-accent: #a88bd5;
+  --color-accent-hover: #bda4e5;
+  --color-accent-soft: rgba(168, 139, 213, 0.16);
+
+  /* Pink */
+  --color-pink: #e8a9c1;
+  --color-pink-soft: rgba(232, 169, 193, 0.14);
+
+  /* Danger */
+  --color-danger: #e7839b;
+  --color-danger-hover: #f29aae;
+  --color-danger-soft: rgba(231, 131, 155, 0.14);
+
+  /* Priority */
+  --priority-high: #e7839b;
+  --priority-high-soft: rgba(231, 131, 155, 0.14);
+
+  --priority-medium: #dfbb70;
+  --priority-medium-soft: rgba(223, 187, 112, 0.14);
+
+  --priority-low: #b49add;
+  --priority-low-soft: rgba(180, 154, 221, 0.15);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px rgba(168, 139, 213, 0.32);
+
+  color-scheme: dark;
+}
+
+
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+}
+
+
+/* Main heading */
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+
+/* Section headings */
+h2,
+h3 {
+  font-weight: 600;
+}
+
+
+/* =========================
+   SMOOTH THEME TRANSITION
+   ========================= */
+
+body,
+button,
+input,
+select,
+textarea,
+.panel,
+.stat-card,
+.task-item {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
