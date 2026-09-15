@@ -1019,7 +1019,7 @@ select:focus {
     }
 }
 /* =========================================================
-   PREMIUM PORTFOLIO-STYLE TASK MANAGER
+PREMIUM PORTFOLIO-STYLE TASK MANAGER
    ========================================================= */
 
 :root {
@@ -2125,3 +2125,19 @@ body::after {
         transform: none !important;
     }
 }
+
+/* ---------- DRAG & DROP ---------- */
+.task-item {
+    cursor: grab;
+}
+
+.task-item:active {
+    cursor: grabbing;
+}
+
+.task-item.dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
+}
+
+

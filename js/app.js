@@ -3,6 +3,8 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let currentFilter = "all";
 let searchText = "";
 let currentSort = "newest";
+let isManualOrder = localStorage.getItem("taskManagerManualOrder") === "true";
+let draggedTaskId = null;
 
 // ================= THEME =================
 
@@ -326,7 +328,7 @@ function renderTasks() {
         medium: 2,
         low: 1
     };
-
+if (!isManualOrder) {
     filteredTasks.sort((a, b) => {
         if (currentSort === "newest") {
             return b.id - a.id;
@@ -358,6 +360,7 @@ function renderTasks() {
 
         return 0;
     });
+}
 
     if (taskListCount) {
         taskListCount.textContent =
@@ -400,7 +403,53 @@ function renderTasks() {
 
         // ---------- TASK CARD ----------
         const li = document.createElement("li");
+        // ---------- DRAG & DROP ----------
+li.draggable = true;
+li.dataset.taskId = task.id;
 
+li.addEventListener("dragstart", () => {
+    draggedTaskId = task.id;
+    li.classList.add("dragging");
+});
+
+li.addEventListener("dragend", () => {
+    li.classList.remove("dragging");
+    draggedTaskId = null;
+});
+
+li.addEventListener("dragover", (e) => {
+    e.preventDefault();
+});
+
+li.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (draggedTaskId === null || draggedTaskId === task.id) {
+        return;
+    }
+
+    const draggedIndex = tasks.findIndex(
+        t => t.id === draggedTaskId
+    );
+
+    const targetIndex = tasks.findIndex(
+        t => t.id === task.id
+    );
+
+    if (draggedIndex === -1 || targetIndex === -1) {
+        return;
+    }
+
+    const [movedTask] = tasks.splice(draggedIndex, 1);
+
+    tasks.splice(targetIndex, 0, movedTask);
+
+    isManualOrder = true;
+    localStorage.setItem("taskManagerManualOrder", "true");
+
+    saveTasks();
+    renderTasks();
+});
         li.className =
             `task-item
             ${task.completed ? "is-complete" : ""}
@@ -757,8 +806,14 @@ importInput?.addEventListener("change", event => {
 const sortSelect = document.getElementById("sortSelect");
 
 sortSelect?.addEventListener("change", () => {
+
     currentSort = sortSelect.value;
+
+    isManualOrder = false;
+    localStorage.setItem("taskManagerManualOrder", "false");
+
     renderTasks();
+
 });
 
 // ================= AUTO OVERDUE CHECK =================
@@ -852,3 +907,30 @@ function checkReminders() {
 requestNotificationPermission();
 
 setInterval(checkReminders, 1000);
+
+
+// ================= KEYBOARD SHORTCUTS =================
+
+document.addEventListener("keydown", (event) => {
+
+    // Ctrl + K → Focus search
+    if (event.ctrlKey && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchInput?.focus();
+    }
+
+    // Escape → Clear search
+    if (event.key === "Escape" && document.activeElement === searchInput) {
+        searchInput.value = "";
+        searchText = "";
+        renderTasks();
+        searchInput.blur();
+    }
+
+    // Ctrl + Enter → Add task
+    if (event.ctrlKey && event.key === "Enter") {
+        event.preventDefault();
+        taskForm?.requestSubmit();
+    }
+
+});
