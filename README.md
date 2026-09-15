@@ -19,7 +19,7 @@ Coming soon — GitHub Pages deployment will be added.
 ### Task Added
 ![Task Added](screenshots/darkk.png)
 
-### Task Added
+### Responsive view
 ![Task Added](screenshots/ligghht.png)
 
 ## ✨ Features
