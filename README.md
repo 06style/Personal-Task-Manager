@@ -4,7 +4,7 @@ A responsive and interactive task management web application designed to help us
 
 ## 🚀 Live Demo
 
-Coming soon — GitHub Pages deployment will be added.
+[Live Demo](https://06style.github.io/Personal-Task-Manager/)
 ## 📸 Screenshots
 
 ### Light Theme
